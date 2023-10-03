@@ -83,7 +83,7 @@ namespace FDT.Simulation.API.Controllers
                 return BadRequest("Invalid simulation ID or missing simulated data.");
             }
 
-            if (!(simulatedDataObj is IEnumerable<Tuple<double, double>> simulatedData))
+            if (simulatedDataObj is not IEnumerable<Tuple<double, double>> simulatedData)
             {
                 return BadRequest("Invalid simulated data type.");
             }

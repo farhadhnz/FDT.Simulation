@@ -1,3 +1,5 @@
+using FDT.Simulation.API.AsyncDataServices;
+using FDT.Simulation.API.EventProcessing;
 using FDT.Simulation.API.SyncDataServices;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
 
 builder.Services.AddHttpClient<IManagementDataClient, HttpManagementDataClient>();
+builder.Services.AddSingleton<IEventProcessor, EventProcessor>();
+
+builder.Services.AddHostedService<MessageBusSubscriber>();
 
 builder.Services.AddCors(options =>
 {
